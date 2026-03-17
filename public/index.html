@@ -35,18 +35,18 @@
     .cursor {
       position: fixed;
       width: 12px; height: 12px;
-      background: var(--coral);
+      background: var(--white);
       border-radius: 50%;
       pointer-events: none;
       z-index: 9999;
       transform: translate(-50%, -50%);
       transition: width 0.2s, height 0.2s, background 0.2s;
-      mix-blend-mode: normal;
+      mix-blend-mode: difference;
     }
     .cursor-ring {
       position: fixed;
       width: 36px; height: 36px;
-      border: 1.5px solid rgba(255,72,50,0.5);
+      border: 1.5px solid rgba(255,255,255,0.35);
       border-radius: 50%;
       pointer-events: none;
       z-index: 9998;
@@ -117,29 +117,21 @@
       background: rgba(13,13,13,0.95);
       backdrop-filter: blur(12px);
       padding: 18px 60px;
-      border-bottom: 1px solid rgba(255,72,50,0.15);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
     .nav-logo {
       display: flex;
       align-items: center;
-      gap: 10px;
       text-decoration: none;
     }
-    .nav-logo-dot {
-      width: 10px; height: 10px;
-      background: var(--coral);
-      border-radius: 50%;
-      animation: pulse 2s ease-in-out infinite;
+    .nav-swoosh {
+      width: 72px;
+      height: auto;
+      fill: var(--white);
+      transition: fill 0.3s;
     }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.3); opacity: 0.7; }
-    }
-    .nav-logo-text {
-      font-family: 'Anton', sans-serif;
-      font-size: 24px;
-      letter-spacing: 6px;
-      color: var(--white);
+    .nav-logo:hover .nav-swoosh {
+      fill: var(--coral);
     }
     .nav-links {
       display: flex;
@@ -175,15 +167,17 @@
       letter-spacing: 3px;
       text-transform: uppercase;
       color: var(--dark);
-      background: var(--coral);
+      background: var(--white);
       border: none;
       padding: 12px 28px;
       cursor: none;
       text-decoration: none;
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s, color 0.3s;
     }
     .nav-cta:hover {
       transform: translateY(-2px);
+      background: var(--coral);
+      color: var(--white);
       box-shadow: 0 8px 24px rgba(255,72,50,0.35);
     }
 
@@ -210,20 +204,22 @@
       inset: 0;
       background: linear-gradient(135deg, rgba(13,13,13,0.8) 0%, rgba(13,13,13,0.2) 45%, rgba(13,13,13,0.75) 100%);
     }
-    .hero-slash {
+    .hero-swoosh-bg {
       position: absolute;
-      bottom: 38%;
-      left: -5%;
-      width: 110%;
-      height: 4px;
-      background: linear-gradient(90deg, transparent, var(--coral), transparent);
-      transform: rotate(-3deg);
+      right: -5%;
+      bottom: 10%;
+      width: 55%;
+      height: auto;
+      fill: rgba(255,255,255,0.04);
+      z-index: 1;
+      pointer-events: none;
       opacity: 0;
-      animation: slashIn 1.2s 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      transform: translateX(60px);
+      animation: swooshReveal 1.8s 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-    @keyframes slashIn {
-      from { opacity: 0; transform: rotate(-3deg) scaleX(0); }
-      to { opacity: 0.7; transform: rotate(-3deg) scaleX(1); }
+    @keyframes swooshReveal {
+      from { opacity: 0; transform: translateX(60px); }
+      to { opacity: 1; transform: translateX(0); }
     }
     .hero-content {
       position: relative;
@@ -962,8 +958,7 @@
   <!-- ─── NAV ─── -->
   <nav id="nav">
     <a href="#" class="nav-logo">
-      <div class="nav-logo-dot"></div>
-      <span class="nav-logo-text">NIKE</span>
+      <svg class="nav-swoosh" viewBox="0 0 69 30" xmlns="http://www.w3.org/2000/svg"><path d="M68.56 0.97C54.09 10.2 39.91 19.93 19.35 29.15C12.83 29.15 4.26 26.66 0 23.25C7.15 22.48 19.95 16.83 25.49 13.19L38.59 0.28C44.43 -0.75 63.71 -0.55 68.56 0.97Z"/></svg>
     </a>
     <ul class="nav-links">
       <li><a href="#features">Innovation</a></li>
@@ -977,7 +972,7 @@
   <section class="hero">
     <div class="hero-img" id="heroImg" data-parallax="0.3"></div>
     <div class="hero-overlay"></div>
-    <div class="hero-slash"></div>
+    <svg class="hero-swoosh-bg" viewBox="0 0 69 30" xmlns="http://www.w3.org/2000/svg"><path d="M68.56 0.97C54.09 10.2 39.91 19.93 19.35 29.15C12.83 29.15 4.26 26.66 0 23.25C7.15 22.48 19.95 16.83 25.49 13.19L38.59 0.28C44.43 -0.75 63.71 -0.55 68.56 0.97Z"/></svg>
     <div class="hero-content">
       <div class="hero-eyebrow reveal">
         <div class="hero-eyebrow-line"></div>
@@ -1130,9 +1125,9 @@
     <div class="footer-top">
       <div class="footer-brand">
         <a href="#" class="nav-logo" style="text-decoration:none;">
-          <div class="nav-logo-dot"></div>
-          <span class="nav-logo-text">NIKE</span>
+          <svg class="nav-swoosh" viewBox="0 0 69 30" xmlns="http://www.w3.org/2000/svg"><path d="M68.56 0.97C54.09 10.2 39.91 19.93 19.35 29.15C12.83 29.15 4.26 26.66 0 23.25C7.15 22.48 19.95 16.83 25.49 13.19L38.59 0.28C44.43 -0.75 63.71 -0.55 68.56 0.97Z"/></svg>
         </a>
+        <p class="footer-jdi" style="font-family:'Anton',sans-serif; font-size:14px; letter-spacing:4px; text-transform:uppercase; color:var(--white-dim); margin-top:12px;">Just Do It.</p>
         <p></p>
       </div>
       <div class="footer-col"><h4></h4><ul></ul></div>
@@ -1193,9 +1188,9 @@
 
     // Feature card SVG icons
     const featureIcons = [
-      '<svg class="feature-icon" viewBox="0 0 48 48" fill="none"><path d="M8 40L20 20L28 32L34 24L40 40H8Z" stroke="#FF4832" stroke-width="2" stroke-linejoin="round"/><circle cx="34" cy="14" r="4" stroke="#FF4832" stroke-width="2"/></svg>',
-      '<svg class="feature-icon" viewBox="0 0 48 48" fill="none"><rect x="8" y="28" width="32" height="8" rx="4" stroke="#FF4832" stroke-width="2"/><path d="M16 28V16C16 12 20 10 24 10C28 10 32 12 32 16V28" stroke="#FF4832" stroke-width="2" stroke-linecap="round"/></svg>',
-      '<svg class="feature-icon" viewBox="0 0 48 48" fill="none"><path d="M12 36L24 12L36 36" stroke="#FF4832" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 28H32" stroke="#FF4832" stroke-width="2" stroke-linecap="round"/></svg>'
+      '<svg class="feature-icon" viewBox="0 0 48 48" fill="none"><path d="M8 40L20 20L28 32L34 24L40 40H8Z" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linejoin="round"/><circle cx="34" cy="14" r="4" stroke="rgba(255,255,255,0.7)" stroke-width="2"/></svg>',
+      '<svg class="feature-icon" viewBox="0 0 48 48" fill="none"><rect x="8" y="28" width="32" height="8" rx="4" stroke="rgba(255,255,255,0.7)" stroke-width="2"/><path d="M16 28V16C16 12 20 10 24 10C28 10 32 12 32 16V28" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round"/></svg>',
+      '<svg class="feature-icon" viewBox="0 0 48 48" fill="none"><path d="M12 36L24 12L36 36" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 28H32" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round"/></svg>'
     ];
     const starSVG = '<svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
     const arrowSVG = '<svg class="arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M14 6l6 6-6 6"/></svg>';
@@ -1208,7 +1203,6 @@
 
         // Site
         document.title = c.site.title;
-        document.querySelectorAll('.nav-logo-text').forEach(el => el.textContent = c.site.brandName);
 
         // Nav
         const navLinks = document.querySelectorAll('.nav-links a');
