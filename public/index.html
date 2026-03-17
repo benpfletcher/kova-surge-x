@@ -943,6 +943,567 @@
     .btn-primary:hover .arrow-right,
     .btn-dark:hover .arrow-right { transform: translateX(4px); }
 
+    /* ─── HERO JUST DO IT WATERMARK ─── */
+    .hero-jdi {
+      position: absolute;
+      bottom: 16%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(120px, 18vw, 280px);
+      letter-spacing: -4px;
+      line-height: 0.85;
+      color: rgba(255,255,255,0.03);
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 1;
+      user-select: none;
+    }
+
+    /* ─── MARKET PULSE ─── */
+    .market-pulse {
+      padding: 120px 60px;
+      background: var(--dark2);
+      position: relative;
+      overflow: hidden;
+    }
+    .market-pulse::before {
+      content: 'NKE';
+      position: absolute;
+      right: -40px;
+      top: 50%;
+      transform: translateY(-50%) rotate(-90deg);
+      font-family: 'Anton', sans-serif;
+      font-size: 200px;
+      letter-spacing: 20px;
+      color: rgba(255,255,255,0.015);
+      pointer-events: none;
+    }
+    .charts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 64px;
+    }
+    .chart-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.4s;
+    }
+    .chart-card:hover {
+      border-color: rgba(255,255,255,0.12);
+    }
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .chart-ticker {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .chart-swoosh {
+      width: 28px;
+      height: auto;
+      fill: var(--white);
+    }
+    .chart-ticker-icon {
+      font-family: 'Anton', sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: #4FC3F7;
+      border: 1px solid rgba(79,195,247,0.3);
+      padding: 5px 8px;
+      line-height: 1;
+    }
+    .chart-symbol {
+      font-family: 'Anton', sans-serif;
+      font-size: 28px;
+      letter-spacing: 3px;
+      color: var(--white);
+    }
+    .chart-price-group { text-align: right; }
+    .chart-price {
+      font-family: 'Anton', sans-serif;
+      font-size: 40px;
+      color: var(--white);
+      line-height: 1;
+    }
+    .chart-change {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      margin-top: 4px;
+      letter-spacing: 1px;
+    }
+    .chart-change.positive { color: #00E676; }
+    .chart-change.negative { color: var(--coral); }
+    .chart-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--white-dim);
+      margin-top: 4px;
+    }
+    .chart-canvas {
+      width: 100%;
+      height: 200px;
+      margin-top: 24px;
+      display: block;
+    }
+    .chart-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 16px;
+    }
+    .chart-range {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+    }
+    .chart-live {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+    }
+    .chart-live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #00E676;
+      animation: livePulse 2s ease-in-out infinite;
+    }
+    @keyframes livePulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    .chart-error {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 200px;
+      margin-top: 24px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+    }
+
+    @media (max-width: 900px) {
+      .charts-grid { grid-template-columns: 1fr; }
+      .market-pulse { padding: 80px 24px; }
+    }
+
+    /* ─── HERO JUST DO IT WATERMARK ─── */
+    .hero-jdi {
+      position: absolute;
+      bottom: 14%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(120px, 18vw, 280px);
+      letter-spacing: -4px;
+      line-height: 0.85;
+      color: rgba(255,255,255,0.025);
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 1;
+      user-select: none;
+    }
+
+    /* ─── MARKET PULSE ─── */
+    .market-pulse {
+      padding: 120px 60px;
+      background: var(--dark2);
+      position: relative;
+      overflow: hidden;
+    }
+    .market-pulse::before {
+      content: 'NKE';
+      position: absolute;
+      right: -40px;
+      top: 50%;
+      transform: translateY(-50%) rotate(-90deg);
+      font-family: 'Anton', sans-serif;
+      font-size: 200px;
+      letter-spacing: 20px;
+      color: rgba(255,255,255,0.015);
+      pointer-events: none;
+    }
+    .charts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 64px;
+    }
+    .chart-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.4s;
+    }
+    .chart-card:hover { border-color: rgba(255,255,255,0.12); }
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .chart-ticker { display: flex; align-items: center; gap: 12px; }
+    .chart-swoosh { width: 28px; height: auto; fill: var(--white); }
+    .chart-ticker-icon {
+      font-family: 'Anton', sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: #4FC3F7;
+      border: 1px solid rgba(79,195,247,0.3);
+      padding: 5px 8px;
+      line-height: 1;
+    }
+    .chart-symbol {
+      font-family: 'Anton', sans-serif;
+      font-size: 28px;
+      letter-spacing: 3px;
+      color: var(--white);
+    }
+    .chart-price-group { text-align: right; }
+    .chart-price {
+      font-family: 'Anton', sans-serif;
+      font-size: 40px;
+      color: var(--white);
+      line-height: 1;
+    }
+    .chart-change {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      margin-top: 4px;
+      letter-spacing: 1px;
+    }
+    .chart-change.positive { color: #00E676; }
+    .chart-change.negative { color: var(--coral); }
+    .chart-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--white-dim);
+      margin-top: 4px;
+    }
+    .chart-canvas {
+      width: 100%;
+      height: 200px;
+      margin-top: 24px;
+      display: block;
+    }
+    .chart-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 16px;
+    }
+    .chart-range, .chart-live {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+    }
+    .chart-live { display: flex; align-items: center; gap: 6px; }
+    .chart-live-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #00E676;
+      animation: livePulse 2s ease-in-out infinite;
+    }
+    @keyframes livePulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+    .chart-error {
+      display: flex; align-items: center; justify-content: center;
+      height: 200px; margin-top: 24px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px; letter-spacing: 2px;
+      text-transform: uppercase; color: rgba(255,255,255,0.2);
+    }
+
+    /* ─── NIKE SURF — COASTLINE ─── */
+    .surf-section {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(165deg, #0a1628 0%, #0d2137 40%, #132d3e 70%, #1a3a4a 100%);
+    }
+    .surf-header {
+      padding: 100px 60px 0;
+      position: relative;
+      z-index: 5;
+    }
+    .surf-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .surf-eyebrow-line {
+      width: 32px; height: 2px;
+      background: #26C6DA;
+    }
+    .surf-eyebrow-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: #26C6DA;
+    }
+    .surf-title {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(48px, 6vw, 80px);
+      letter-spacing: -1px;
+      line-height: 0.9;
+      color: var(--white);
+    }
+    .surf-title span { color: #26C6DA; }
+
+    /* Video mask — live beach footage through typography */
+    .surf-video-mask {
+      position: relative;
+      width: 100%;
+      height: clamp(280px, 38vw, 500px);
+      margin-top: 48px;
+      overflow: hidden;
+    }
+    .surf-video-mask iframe {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 200%; height: 200%;
+      transform: translate(-50%, -50%);
+      border: 0;
+      pointer-events: none;
+    }
+    .surf-mask-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0a1628;
+      mix-blend-mode: multiply;
+      z-index: 2;
+    }
+    .surf-mask-text {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(160px, 24vw, 380px);
+      letter-spacing: 8px;
+      color: white;
+      line-height: 1;
+      user-select: none;
+    }
+    .surf-mask-sub {
+      position: absolute;
+      bottom: 20px;
+      left: 0; right: 0;
+      text-align: center;
+      z-index: 3;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(38,198,218,0.6);
+    }
+    .surf-mask-live-dot {
+      display: inline-block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #26C6DA;
+      margin-right: 8px;
+      animation: livePulse 2s ease-in-out infinite;
+    }
+
+    /* Beach cam strip */
+    .surf-cams {
+      display: flex;
+      gap: 2px;
+      margin-top: 2px;
+      height: 120px;
+      overflow: hidden;
+    }
+    .surf-cam-thumb {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .surf-cam-thumb iframe {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 300%; height: 300%;
+      transform: translate(-50%, -50%);
+      border: 0;
+      pointer-events: none;
+    }
+    .surf-cam-thumb::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,22,40,0.9) 0%, rgba(10,22,40,0.2) 60%);
+      z-index: 2;
+      transition: background 0.4s;
+    }
+    .surf-cam-thumb:hover::after {
+      background: linear-gradient(to top, rgba(10,22,40,0.6) 0%, rgba(10,22,40,0.05) 60%);
+    }
+    .surf-cam-label {
+      position: absolute;
+      bottom: 12px; left: 14px;
+      z-index: 3;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+    }
+    .surf-cam-label .live-tag {
+      color: #26C6DA;
+      margin-left: 8px;
+      font-size: 10px;
+    }
+    .surf-cam-active {
+      outline: 2px solid #26C6DA;
+      outline-offset: -2px;
+    }
+
+    /* Surf product content */
+    .surf-content {
+      padding: 64px 60px 100px;
+      position: relative;
+      z-index: 5;
+    }
+    .surf-tagline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.5);
+      max-width: 480px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+    .surf-products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .surf-product-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(38,198,218,0.1);
+      padding: 28px;
+      transition: border-color 0.4s, transform 0.4s;
+    }
+    .surf-product-card:hover {
+      border-color: rgba(38,198,218,0.3);
+      transform: translateY(-4px);
+    }
+    .surf-product-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #26C6DA;
+      margin-bottom: 12px;
+    }
+    .surf-product-name {
+      font-family: 'Anton', sans-serif;
+      font-size: 22px;
+      letter-spacing: 1px;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .surf-product-desc {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    .surf-product-price {
+      font-family: 'Anton', sans-serif;
+      font-size: 28px;
+      color: var(--white);
+    }
+    .surf-product-price sup {
+      font-size: 16px;
+      color: #26C6DA;
+    }
+    .surf-cta-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .btn-surf {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #26C6DA;
+      color: #0a1628;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 18px 44px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .btn-surf:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(38,198,218,0.3);
+    }
+    .btn-surf .arrow-right { stroke: #0a1628; }
+
+    /* Wave decoration */
+    .surf-wave-deco {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 80px;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    @media (max-width: 900px) {
+      .charts-grid { grid-template-columns: 1fr; }
+      .market-pulse { padding: 80px 24px; }
+      .surf-header { padding: 60px 24px 0; }
+      .surf-content { padding: 40px 24px 80px; }
+      .surf-products { grid-template-columns: 1fr; }
+      .surf-cams { height: 80px; }
+    }
+
     /* ─── PARALLAX UTILITY ─── */
     [data-parallax] {
       will-change: transform;
@@ -958,11 +1519,12 @@
   <!-- ─── NAV ─── -->
   <nav id="nav">
     <a href="#" class="nav-logo">
-      <svg class="nav-swoosh" viewBox="0 0 69 30" xmlns="http://www.w3.org/2000/svg"><path d="M68.56 0.97C54.09 10.2 39.91 19.93 19.35 29.15C12.83 29.15 4.26 26.66 0 23.25C7.15 22.48 19.95 16.83 25.49 13.19L38.59 0.28C44.43 -0.75 63.71 -0.55 68.56 0.97Z"/></svg>
+      <svg class="nav-swoosh" viewBox="-1 -3 104 48" xmlns="http://www.w3.org/2000/svg"><path d="M100 8C65-2 25 0 2 28-2 36 0 42 8 38 24 28 55 8 100 8Z"/></svg>
     </a>
     <ul class="nav-links">
       <li><a href="#features">Innovation</a></li>
       <li><a href="#product">The Shoe</a></li>
+      <li><a href="#surf">Surf</a></li>
       <li><a href="#stories">Athletes</a></li>
     </ul>
     <a href="#buy" class="nav-cta">Buy Now — $249</a>
@@ -972,7 +1534,8 @@
   <section class="hero">
     <div class="hero-img" id="heroImg" data-parallax="0.3"></div>
     <div class="hero-overlay"></div>
-    <svg class="hero-swoosh-bg" viewBox="0 0 69 30" xmlns="http://www.w3.org/2000/svg"><path d="M68.56 0.97C54.09 10.2 39.91 19.93 19.35 29.15C12.83 29.15 4.26 26.66 0 23.25C7.15 22.48 19.95 16.83 25.49 13.19L38.59 0.28C44.43 -0.75 63.71 -0.55 68.56 0.97Z"/></svg>
+    <svg class="hero-swoosh-bg" viewBox="-1 -3 104 48" xmlns="http://www.w3.org/2000/svg"><path d="M100 8C65-2 25 0 2 28-2 36 0 42 8 38 24 28 55 8 100 8Z"/></svg>
+    <div class="hero-jdi">JUST DO IT.</div>
     <div class="hero-content">
       <div class="hero-eyebrow reveal">
         <div class="hero-eyebrow-line"></div>
@@ -1111,6 +1674,134 @@
     <div class="testimonials-grid"></div>
   </section>
 
+  <!-- ─── MARKET PULSE ─── -->
+  <section class="market-pulse" id="market">
+    <div class="reveal-left">
+      <div class="section-eyebrow">Live Data</div>
+      <div class="section-title">MARKET<br/><span>PULSE.</span></div>
+    </div>
+    <div class="charts-grid">
+      <div class="chart-card reveal" id="chart-NKE">
+        <div class="chart-header">
+          <div class="chart-ticker">
+            <svg class="chart-swoosh" viewBox="-1 -3 104 48" xmlns="http://www.w3.org/2000/svg"><path d="M100 8C65-2 25 0 2 28-2 36 0 42 8 38 24 28 55 8 100 8Z"/></svg>
+            <span class="chart-symbol">NKE</span>
+          </div>
+          <div class="chart-price-group">
+            <div class="chart-price">—</div>
+            <div class="chart-change">Loading…</div>
+          </div>
+        </div>
+        <div class="chart-name">Nike, Inc. — NYSE</div>
+        <canvas class="chart-canvas"></canvas>
+        <div class="chart-footer">
+          <span class="chart-range">6 Month</span>
+          <div class="chart-live"><span class="chart-live-dot"></span> Live</div>
+        </div>
+      </div>
+      <div class="chart-card reveal reveal-delay-1" id="chart-MQG">
+        <div class="chart-header">
+          <div class="chart-ticker">
+            <div class="chart-ticker-icon">MQG</div>
+            <span class="chart-symbol">MQG.AX</span>
+          </div>
+          <div class="chart-price-group">
+            <div class="chart-price">—</div>
+            <div class="chart-change">Loading…</div>
+          </div>
+        </div>
+        <div class="chart-name">Macquarie Group Ltd — ASX</div>
+        <canvas class="chart-canvas"></canvas>
+        <div class="chart-footer">
+          <span class="chart-range">6 Month</span>
+          <div class="chart-live"><span class="chart-live-dot"></span> Live</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── NIKE SURF — COASTLINE ─── -->
+  <section class="surf-section" id="surf">
+    <div class="surf-header">
+      <div class="surf-eyebrow">
+        <div class="surf-eyebrow-line"></div>
+        <span class="surf-eyebrow-text">Nike Surf · Coastline</span>
+      </div>
+      <div class="surf-title reveal-left">RIDE THE<br/><span>WAVE.</span></div>
+    </div>
+
+    <!-- Live beach video masked through typography -->
+    <div class="surf-video-mask reveal-scale">
+      <iframe id="surfMainCam" src="https://www.youtube.com/embed/DY5RYp4sxYc?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=DY5RYp4sxYc&modestbranding=1&playsinline=1" allow="autoplay; encrypted-media" loading="lazy"></iframe>
+      <div class="surf-mask-overlay">
+        <span class="surf-mask-text">SURF</span>
+      </div>
+      <div class="surf-mask-sub">
+        <span class="surf-mask-live-dot"></span>
+        <span id="surfCamLocation">Pipeline, North Shore — Live</span>
+      </div>
+    </div>
+
+    <!-- Beach cam strip -->
+    <div class="surf-cams">
+      <div class="surf-cam-thumb surf-cam-active" data-cam-id="DY5RYp4sxYc" data-cam-name="Pipeline, North Shore — Live">
+        <iframe src="https://www.youtube.com/embed/DY5RYp4sxYc?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=DY5RYp4sxYc&modestbranding=1&playsinline=1" allow="autoplay; encrypted-media" loading="lazy"></iframe>
+        <div class="surf-cam-label">Pipeline, HI <span class="live-tag">● LIVE</span></div>
+      </div>
+      <div class="surf-cam-thumb" data-cam-id="wnNrd-VjLsQ" data-cam-name="Waimea Bay, Oahu — Live">
+        <iframe src="https://www.youtube.com/embed/wnNrd-VjLsQ?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=wnNrd-VjLsQ&modestbranding=1&playsinline=1" allow="autoplay; encrypted-media" loading="lazy"></iframe>
+        <div class="surf-cam-label">Waimea Bay <span class="live-tag">● LIVE</span></div>
+      </div>
+      <div class="surf-cam-thumb" data-cam-id="OWbI6WtlI-k" data-cam-name="Santa Monica Beach — Live">
+        <iframe src="https://www.youtube.com/embed/OWbI6WtlI-k?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=OWbI6WtlI-k&modestbranding=1&playsinline=1" allow="autoplay; encrypted-media" loading="lazy"></iframe>
+        <div class="surf-cam-label">Santa Monica <span class="live-tag">● LIVE</span></div>
+      </div>
+      <div class="surf-cam-thumb" data-cam-id="LXWVYoBluT4" data-cam-name="Soggy Dollar Bar, BVI — Live">
+        <iframe src="https://www.youtube.com/embed/LXWVYoBluT4?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=LXWVYoBluT4&modestbranding=1&playsinline=1" allow="autoplay; encrypted-media" loading="lazy"></iframe>
+        <div class="surf-cam-label">White Bay, BVI <span class="live-tag">● LIVE</span></div>
+      </div>
+    </div>
+
+    <!-- Surf products -->
+    <div class="surf-content">
+      <p class="surf-tagline reveal">
+        Born where the reef meets the road. Nike Surf is built for athletes who trade tarmac for tides — performance footwear engineered for sand, salt, and speed.
+      </p>
+      <div class="surf-products">
+        <div class="surf-product-card reveal">
+          <div class="surf-product-tag">New Drop</div>
+          <div class="surf-product-name">NIKE AQUA SURGE</div>
+          <div class="surf-product-desc">Water-channelling Flyknit upper. Drainage ports. Reef-grip outsole. From the break to the boardwalk without changing shoes.</div>
+          <div class="surf-product-price"><sup>$</sup>189</div>
+        </div>
+        <div class="surf-product-card reveal reveal-delay-1">
+          <div class="surf-product-tag">Surf Essential</div>
+          <div class="surf-product-name">NIKE REEF RUNNER</div>
+          <div class="surf-product-desc">Trail-to-sand hybrid. React foam meets coral-proof outsole. UV-resistant upper that dries in 12 minutes flat.</div>
+          <div class="surf-product-price"><sup>$</sup>159</div>
+        </div>
+        <div class="surf-product-card reveal reveal-delay-2">
+          <div class="surf-product-tag">Competition</div>
+          <div class="surf-product-name">NIKE TIDE PRO</div>
+          <div class="surf-product-desc">The official shoe of Nike Surf Team. Neoprene collar. Hydrophobic mesh. Built for the athletes who surf before sunrise.</div>
+          <div class="surf-product-price"><sup>$</sup>219</div>
+        </div>
+      </div>
+      <div class="surf-cta-row reveal">
+        <a href="#" class="btn-surf">
+          Shop Surf
+          <svg class="arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M14 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Wave decoration SVG -->
+    <svg class="surf-wave-deco" viewBox="0 0 1440 80" preserveAspectRatio="none" fill="none">
+      <path d="M0 40C180 80 360 0 540 40C720 80 900 0 1080 40C1260 80 1440 20 1440 20V80H0Z" fill="rgba(38,198,218,0.06)"/>
+      <path d="M0 55C200 75 400 20 600 50C800 75 1000 25 1200 50C1350 68 1440 40 1440 40V80H0Z" fill="rgba(38,198,218,0.03)"/>
+    </svg>
+  </section>
+
   <!-- ─── CTA BANNER ─── -->
   <section class="cta-banner" id="buy">
     <div class="reveal">
@@ -1125,7 +1816,7 @@
     <div class="footer-top">
       <div class="footer-brand">
         <a href="#" class="nav-logo" style="text-decoration:none;">
-          <svg class="nav-swoosh" viewBox="0 0 69 30" xmlns="http://www.w3.org/2000/svg"><path d="M68.56 0.97C54.09 10.2 39.91 19.93 19.35 29.15C12.83 29.15 4.26 26.66 0 23.25C7.15 22.48 19.95 16.83 25.49 13.19L38.59 0.28C44.43 -0.75 63.71 -0.55 68.56 0.97Z"/></svg>
+          <svg class="nav-swoosh" viewBox="-1 -3 104 48" xmlns="http://www.w3.org/2000/svg"><path d="M100 8C65-2 25 0 2 28-2 36 0 42 8 38 24 28 55 8 100 8Z"/></svg>
         </a>
         <p class="footer-jdi" style="font-family:'Anton',sans-serif; font-size:14px; letter-spacing:4px; text-transform:uppercase; color:var(--white-dim); margin-top:12px;">Just Do It.</p>
         <p></p>
@@ -1326,6 +2017,179 @@
     }
 
     loadContent();
+
+    // ─── STOCK CHARTS ───
+    async function loadStockChart(symbol, containerId) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      const priceEl = container.querySelector('.chart-price');
+      const changeEl = container.querySelector('.chart-change');
+      const canvas = container.querySelector('.chart-canvas');
+
+      try {
+        const res = await fetch(`/api/stock/${encodeURIComponent(symbol)}?range=6mo&interval=1d`);
+        const data = await res.json();
+        const result = data.chart?.result?.[0];
+        if (!result) throw new Error('No data');
+
+        const timestamps = result.timestamp;
+        const closes = result.indicators.quote[0].close;
+        const validData = timestamps.map((t, i) => ({ t, c: closes[i] })).filter(d => d.c != null);
+        const prices = validData.map(d => d.c);
+
+        const currentPrice = prices[prices.length - 1];
+        const startPrice = prices[0];
+        const change = currentPrice - startPrice;
+        const changePct = (change / startPrice) * 100;
+        const isPositive = change >= 0;
+        const currency = result.meta?.currency === 'AUD' ? 'A$' : '$';
+
+        priceEl.textContent = currency + currentPrice.toFixed(2);
+        changeEl.textContent = (isPositive ? '+' : '') + change.toFixed(2) + ' (' + (isPositive ? '+' : '') + changePct.toFixed(2) + '%)';
+        changeEl.classList.add(isPositive ? 'positive' : 'negative');
+
+        // Draw chart
+        const ctx = canvas.getContext('2d');
+        const dpr = window.devicePixelRatio || 1;
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        ctx.scale(dpr, dpr);
+
+        const w = rect.width, h = rect.height;
+        const min = Math.min(...prices) * 0.997;
+        const max = Math.max(...prices) * 1.003;
+        const range = max - min;
+
+        const points = prices.map((p, i) => ({
+          x: (i / (prices.length - 1)) * w,
+          y: h - ((p - min) / range) * (h * 0.85) - h * 0.05
+        }));
+
+        // Subtle grid
+        ctx.strokeStyle = 'rgba(255,255,255,0.03)';
+        ctx.lineWidth = 1;
+        for (let i = 1; i < 4; i++) {
+          const gy = (h / 4) * i;
+          ctx.beginPath();
+          ctx.moveTo(0, gy);
+          ctx.lineTo(w, gy);
+          ctx.stroke();
+        }
+
+        // Area gradient
+        const grad = ctx.createLinearGradient(0, 0, 0, h);
+        if (isPositive) {
+          grad.addColorStop(0, 'rgba(0,230,118,0.12)');
+          grad.addColorStop(1, 'rgba(0,230,118,0)');
+        } else {
+          grad.addColorStop(0, 'rgba(255,72,50,0.12)');
+          grad.addColorStop(1, 'rgba(255,72,50,0)');
+        }
+        ctx.beginPath();
+        ctx.moveTo(points[0].x, points[0].y);
+        for (let i = 1; i < points.length; i++) {
+          const cx = (points[i-1].x + points[i].x) / 2;
+          ctx.quadraticCurveTo(points[i-1].x, points[i-1].y, cx, (points[i-1].y + points[i].y) / 2);
+        }
+        ctx.quadraticCurveTo(points[points.length-2].x, points[points.length-2].y, points[points.length-1].x, points[points.length-1].y);
+        ctx.lineTo(w, h);
+        ctx.lineTo(0, h);
+        ctx.closePath();
+        ctx.fillStyle = grad;
+        ctx.fill();
+
+        // Line
+        ctx.beginPath();
+        ctx.moveTo(points[0].x, points[0].y);
+        for (let i = 1; i < points.length; i++) {
+          const cx = (points[i-1].x + points[i].x) / 2;
+          ctx.quadraticCurveTo(points[i-1].x, points[i-1].y, cx, (points[i-1].y + points[i].y) / 2);
+        }
+        ctx.quadraticCurveTo(points[points.length-2].x, points[points.length-2].y, points[points.length-1].x, points[points.length-1].y);
+        ctx.strokeStyle = isPositive ? '#00E676' : '#FF4832';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // Current price dashed line
+        const last = points[points.length - 1];
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath();
+        ctx.moveTo(0, last.y);
+        ctx.lineTo(w, last.y);
+        ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // End dot
+        ctx.beginPath();
+        ctx.arc(last.x, last.y, 4, 0, Math.PI * 2);
+        ctx.fillStyle = isPositive ? '#00E676' : '#FF4832';
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(last.x, last.y, 8, 0, Math.PI * 2);
+        ctx.fillStyle = isPositive ? 'rgba(0,230,118,0.15)' : 'rgba(255,72,50,0.15)';
+        ctx.fill();
+
+      } catch (err) {
+        console.error('Chart error:', symbol, err);
+        if (canvas) {
+          const wrapper = document.createElement('div');
+          wrapper.className = 'chart-error';
+          wrapper.textContent = 'Market data unavailable';
+          canvas.replaceWith(wrapper);
+        }
+        priceEl.textContent = '—';
+        changeEl.textContent = 'Unavailable';
+      }
+    }
+
+    loadStockChart('NKE', 'chart-NKE');
+    loadStockChart('MQG.AX', 'chart-MQG');
+
+    // Auto-refresh charts every 60s
+    setInterval(() => {
+      loadStockChart('NKE', 'chart-NKE');
+      loadStockChart('MQG.AX', 'chart-MQG');
+    }, 60000);
+
+    // ─── SURF BEACH CAM SWITCHING ───
+    const surfCams = [
+      { id: 'DY5RYp4sxYc', name: 'Pipeline, North Shore — Live' },
+      { id: 'wnNrd-VjLsQ', name: 'Waimea Bay, Oahu — Live' },
+      { id: 'OWbI6WtlI-k', name: 'Santa Monica Beach — Live' },
+      { id: 'LXWVYoBluT4', name: 'Soggy Dollar Bar, BVI — Live' }
+    ];
+    let currentCamIndex = 0;
+
+    function switchMainCam(camId, camName) {
+      const mainIframe = document.getElementById('surfMainCam');
+      const locationLabel = document.getElementById('surfCamLocation');
+      if (mainIframe) {
+        mainIframe.src = `https://www.youtube.com/embed/${camId}?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=${camId}&modestbranding=1&playsinline=1`;
+      }
+      if (locationLabel) locationLabel.textContent = camName;
+      document.querySelectorAll('.surf-cam-thumb').forEach(el => el.classList.remove('surf-cam-active'));
+      const active = document.querySelector(`.surf-cam-thumb[data-cam-id="${camId}"]`);
+      if (active) active.classList.add('surf-cam-active');
+    }
+
+    // Click to switch
+    document.querySelectorAll('.surf-cam-thumb').forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        const camId = thumb.dataset.camId;
+        const camName = thumb.dataset.camName;
+        currentCamIndex = surfCams.findIndex(c => c.id === camId);
+        switchMainCam(camId, camName);
+      });
+    });
+
+    // Auto-rotate every 30s
+    setInterval(() => {
+      currentCamIndex = (currentCamIndex + 1) % surfCams.length;
+      switchMainCam(surfCams[currentCamIndex].id, surfCams[currentCamIndex].name);
+    }, 30000);
   </script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const https = require('https');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -39,7 +40,40 @@ app.post('/api/content', (req, res) => {
   }
 });
 
+// Stock data proxy (Yahoo Finance — free, no API key)
+const stockCache = {};
+const CACHE_TTL = 60000; // 1 minute
+
+app.get('/api/stock/:symbol', (req, res) => {
+  const symbol = encodeURIComponent(req.params.symbol);
+  const range = req.query.range || '6mo';
+  const interval = req.query.interval || '1d';
+  const cacheKey = `${symbol}_${range}_${interval}`;
+
+  if (stockCache[cacheKey] && Date.now() - stockCache[cacheKey].time < CACHE_TTL) {
+    return res.json(stockCache[cacheKey].data);
+  }
+
+  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?interval=${interval}&range=${range}`;
+
+  https.get(url, { headers: { 'User-Agent': 'Mozilla/5.0' } }, (response) => {
+    let data = '';
+    response.on('data', chunk => data += chunk);
+    response.on('end', () => {
+      try {
+        const parsed = JSON.parse(data);
+        stockCache[cacheKey] = { data: parsed, time: Date.now() };
+        res.json(parsed);
+      } catch (e) {
+        res.status(500).json({ error: 'Failed to parse stock data' });
+      }
+    });
+  }).on('error', () => {
+    res.status(500).json({ error: 'Failed to fetch stock data' });
+  });
+});
+
 app.listen(PORT, () => {
-  console.log(`KOVA CMS running on http://localhost:${PORT}`);
+  console.log(`Nike Surge X running on http://localhost:${PORT}`);
   console.log(`Admin panel: http://localhost:${PORT}/admin`);
 });
