@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KOVA CMS — Content Editor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --coral: #FF4832;
+      --dark: #0d0d0d;
+      --dark2: #141414;
+      --dark3: #1a1a1a;
+      --dark4: #222;
+      --border: rgba(255,255,255,0.08);
+      --text: rgba(255,255,255,0.85);
+      --text-dim: rgba(255,255,255,0.5);
+      --radius: 6px;
+    }
+    body {
+      background: var(--dark);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* Header */
+    .admin-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 32px;
+      background: rgba(13,13,13,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .admin-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .admin-logo span { color: var(--coral); }
+    .header-actions { display: flex; gap: 12px; align-items: center; }
+    .btn {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 10px 24px;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn-save { background: var(--coral); color: #fff; }
+    .btn-preview { background: var(--dark3); color: var(--text); border: 1px solid var(--border); }
+    .save-status {
+      font-size: 12px;
+      color: var(--text-dim);
+      letter-spacing: 1px;
+    }
+
+    /* Layout */
+    .admin-body {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 32px 24px 80px;
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 8px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--dark2);
+      overflow: hidden;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.15s;
+    }
+    .section-header:hover { background: var(--dark3); }
+    .section-header h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--coral);
+    }
+    .section-toggle {
+      font-size: 18px;
+      color: var(--text-dim);
+      transition: transform 0.2s;
+    }
+    .section.open .section-toggle { transform: rotate(180deg); }
+    .section-body {
+      display: none;
+      padding: 4px 20px 24px;
+    }
+    .section.open .section-body { display: block; }
+
+    /* Form fields */
+    .field { margin-top: 16px; }
+    .field label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+    }
+    .field input, .field textarea {
+      width: 100%;
+      padding: 10px 12px;
+      background: var(--dark3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .field input:focus, .field textarea:focus {
+      border-color: var(--coral);
+    }
+    .field textarea { resize: vertical; min-height: 80px; }
+
+    /* Card groups */
+    .card-group { margin-top: 16px; }
+    .card-group-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-dim);
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-item {
+      background: var(--dark);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 8px;
+    }
+    .card-item .field:first-child { margin-top: 0; }
+    .row { display: flex; gap: 12px; }
+    .row .field { flex: 1; }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      padding: 14px 24px;
+      background: var(--dark3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: transform 0.3s, opacity 0.3s;
+      z-index: 200;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast.success { border-color: rgba(50,200,100,0.3); }
+    .toast.error { border-color: rgba(255,72,50,0.3); }
+  </style>
+</head>
+<body>
+
+  <header class="admin-header">
+    <div class="admin-logo"><span>KOVA</span> &nbsp;Content Editor</div>
+    <div class="header-actions">
+      <span class="save-status" id="saveStatus"></span>
+      <a href="/" target="_blank" class="btn btn-preview">Preview Site</a>
+      <button class="btn btn-save" id="saveBtn" onclick="saveContent()">Save Changes</button>
+    </div>
+  </header>
+
+  <div class="admin-body" id="adminBody"></div>
+  <div class="toast" id="toast"></div>
+
+  <script>
+    let content = {};
+
+    // Section definitions — describes the admin form structure
+    const sections = [
+      { key: 'site', title: 'Site Settings', fields: [
+        { key: 'title', label: 'Page Title' },
+        { key: 'brandName', label: 'Brand Name' }
+      ]},
+      { key: 'nav', title: 'Navigation', fields: [
+        { key: 'ctaText', label: 'CTA Button Text' },
+        { key: 'ctaHref', label: 'CTA Button Link' }
+      ], arrays: [
+        { key: 'links', title: 'Nav Links', fields: [
+          { key: 'label', label: 'Label' },
+          { key: 'href', label: 'Link' }
+        ]}
+      ]},
+      { key: 'hero', title: 'Hero Section', fields: [
+        { key: 'eyebrow', label: 'Eyebrow Text' },
+        { key: 'headlineLine1', label: 'Headline Line 1' },
+        { key: 'headlineLine2', label: 'Headline Line 2' },
+        { key: 'subheading', label: 'Subheading', type: 'textarea' },
+        { key: 'primaryButtonText', label: 'Primary Button Text' },
+        { key: 'primaryButtonHref', label: 'Primary Button Link' },
+        { key: 'ghostButtonText', label: 'Ghost Button Text' },
+        { key: 'ghostButtonHref', label: 'Ghost Button Link' },
+        { key: 'backgroundImage', label: 'Background Image URL' }
+      ], arrays: [
+        { key: 'stats', title: 'Stats', fields: [
+          { key: 'value', label: 'Value' },
+          { key: 'label', label: 'Label' }
+        ]}
+      ]},
+      { key: 'ticker', title: 'Ticker', arrays: [
+        { key: 'items', title: 'Ticker Items', simple: true }
+      ]},
+      { key: 'features', title: 'Features Section', fields: [
+        { key: 'eyebrow', label: 'Eyebrow Text' },
+        { key: 'title', label: 'Section Title' },
+        { key: 'titleHighlight', label: 'Highlighted Word' }
+      ], arrays: [
+        { key: 'cards', title: 'Feature Cards', fields: [
+          { key: 'number', label: 'Number' },
+          { key: 'title', label: 'Title' },
+          { key: 'description', label: 'Description', type: 'textarea' },
+          { key: 'statValue', label: 'Stat Value' },
+          { key: 'statLabel', label: 'Stat Label' }
+        ]}
+      ]},
+      { key: 'spotlight', title: 'Product Spotlight', fields: [
+        { key: 'eyebrow', label: 'Eyebrow Text' },
+        { key: 'productNameLine1', label: 'Product Name Line 1' },
+        { key: 'productNameLine2', label: 'Product Name Line 2' },
+        { key: 'tagline', label: 'Tagline' },
+        { key: 'badge', label: 'Badge Text' },
+        { key: 'image', label: 'Product Image URL' },
+        { key: 'price', label: 'Price ($)', type: 'number' },
+        { key: 'ctaText', label: 'CTA Button Text' }
+      ], arrays: [
+        { key: 'specs', title: 'Specifications', fields: [
+          { key: 'label', label: 'Label' },
+          { key: 'value', label: 'Value' }
+        ]}
+      ]},
+      { key: 'manifesto', title: 'Manifesto', fields: [
+        { key: 'quote', label: 'Quote (supports <em> for emphasis)', type: 'textarea' },
+        { key: 'attribution', label: 'Attribution' }
+      ]},
+      { key: 'testimonials', title: 'Testimonials', fields: [
+        { key: 'eyebrow', label: 'Eyebrow Text' },
+        { key: 'title', label: 'Section Title' },
+        { key: 'titleHighlight', label: 'Highlighted Text' }
+      ], arrays: [
+        { key: 'cards', title: 'Testimonial Cards', fields: [
+          { key: 'stars', label: 'Stars (1-5)', type: 'number' },
+          { key: 'text', label: 'Testimonial Text', type: 'textarea' },
+          { key: 'name', label: 'Author Name' },
+          { key: 'role', label: 'Author Role' },
+          { key: 'avatar', label: 'Avatar Image URL' }
+        ]}
+      ]},
+      { key: 'cta', title: 'CTA Banner', fields: [
+        { key: 'headline', label: 'Headline' },
+        { key: 'subtext', label: 'Subtext' },
+        { key: 'buttonText', label: 'Button Text' },
+        { key: 'buttonHref', label: 'Button Link' }
+      ]},
+      { key: 'footer', title: 'Footer', fields: [
+        { key: 'brandDescription', label: 'Brand Description', type: 'textarea' },
+        { key: 'copyright', label: 'Copyright Text' }
+      ], arrays: [
+        { key: 'columns', title: 'Footer Columns', fields: [
+          { key: 'heading', label: 'Column Heading' }
+        ], nested: { key: 'links', title: 'Links', fields: [
+          { key: 'label', label: 'Label' },
+          { key: 'href', label: 'URL' }
+        ]}},
+        { key: 'socials', title: 'Social Links', fields: [
+          { key: 'label', label: 'Label' },
+          { key: 'href', label: 'URL' }
+        ]}
+      ]}
+    ];
+
+    function makeField(sectionKey, fieldKey, value, type = 'text', index = null, arrayKey = null) {
+      const id = arrayKey !== null
+        ? `${sectionKey}__${arrayKey}__${index}__${fieldKey}`
+        : `${sectionKey}__${fieldKey}`;
+      if (type === 'textarea') {
+        return `<textarea id="${id}">${value || ''}</textarea>`;
+      }
+      return `<input type="${type}" id="${id}" value="${String(value || '').replace(/"/g, '&quot;')}" />`;
+    }
+
+    function renderForm() {
+      const body = document.getElementById('adminBody');
+      let html = '';
+
+      for (const section of sections) {
+        const data = content[section.key] || {};
+        html += `<div class="section open">`;
+        html += `<div class="section-header" onclick="this.parentElement.classList.toggle('open')">`;
+        html += `<h2>${section.title}</h2><span class="section-toggle">▾</span></div>`;
+        html += `<div class="section-body">`;
+
+        // Simple fields
+        if (section.fields) {
+          for (const f of section.fields) {
+            html += `<div class="field"><label>${f.label}</label>`;
+            html += makeField(section.key, f.key, data[f.key], f.type || 'text');
+            html += `</div>`;
+          }
+        }
+
+        // Array fields
+        if (section.arrays) {
+          for (const arr of section.arrays) {
+            const items = data[arr.key] || [];
+            html += `<div class="card-group"><div class="card-group-title">${arr.title}</div>`;
+
+            if (arr.simple) {
+              // Simple string array (ticker items)
+              items.forEach((item, i) => {
+                html += `<div class="card-item"><div class="field"><label>Item ${i + 1}</label>`;
+                html += `<input type="text" id="${section.key}__${arr.key}__${i}" value="${String(item).replace(/"/g, '&quot;')}" />`;
+                html += `</div></div>`;
+              });
+            } else {
+              items.forEach((item, i) => {
+                html += `<div class="card-item">`;
+                for (const f of arr.fields) {
+                  html += `<div class="field"><label>${f.label}</label>`;
+                  html += makeField(section.key, f.key, item[f.key], f.type || 'text', i, arr.key);
+                  html += `</div>`;
+                }
+                // Nested arrays (footer column links)
+                if (arr.nested && item[arr.nested.key]) {
+                  html += `<div class="card-group" style="margin-top:12px"><div class="card-group-title">${arr.nested.title}</div>`;
+                  item[arr.nested.key].forEach((nestedItem, j) => {
+                    html += `<div class="card-item">`;
+                    for (const nf of arr.nested.fields) {
+                      html += `<div class="field"><label>${nf.label}</label>`;
+                      html += `<input type="text" id="${section.key}__${arr.key}__${i}__${arr.nested.key}__${j}__${nf.key}" value="${String(nestedItem[nf.key] || '').replace(/"/g, '&quot;')}" />`;
+                      html += `</div>`;
+                    }
+                    html += `</div>`;
+                  });
+                  html += `</div>`;
+                }
+                html += `</div>`;
+              });
+            }
+            html += `</div>`;
+          }
+        }
+
+        html += `</div></div>`;
+      }
+
+      body.innerHTML = html;
+    }
+
+    function collectContent() {
+      const c = JSON.parse(JSON.stringify(content)); // deep clone
+
+      for (const section of sections) {
+        if (!c[section.key]) c[section.key] = {};
+
+        // Simple fields
+        if (section.fields) {
+          for (const f of section.fields) {
+            const el = document.getElementById(`${section.key}__${f.key}`);
+            if (el) {
+              c[section.key][f.key] = f.type === 'number' ? Number(el.value) : el.value;
+            }
+          }
+        }
+
+        // Array fields
+        if (section.arrays) {
+          for (const arr of section.arrays) {
+            const items = c[section.key][arr.key] || [];
+
+            if (arr.simple) {
+              items.forEach((_, i) => {
+                const el = document.getElementById(`${section.key}__${arr.key}__${i}`);
+                if (el) items[i] = el.value;
+              });
+            } else {
+              items.forEach((item, i) => {
+                for (const f of arr.fields) {
+                  const el = document.getElementById(`${section.key}__${arr.key}__${i}__${f.key}`);
+                  if (el) {
+                    item[f.key] = f.type === 'number' ? Number(el.value) : el.value;
+                  }
+                }
+                // Nested arrays
+                if (arr.nested && item[arr.nested.key]) {
+                  item[arr.nested.key].forEach((nestedItem, j) => {
+                    for (const nf of arr.nested.fields) {
+                      const el = document.getElementById(`${section.key}__${arr.key}__${i}__${arr.nested.key}__${j}__${nf.key}`);
+                      if (el) nestedItem[nf.key] = el.value;
+                    }
+                  });
+                }
+              });
+            }
+
+            c[section.key][arr.key] = items;
+          }
+        }
+      }
+
+      return c;
+    }
+
+    async function saveContent() {
+      const btn = document.getElementById('saveBtn');
+      btn.textContent = 'Saving...';
+      btn.disabled = true;
+
+      try {
+        const data = collectContent();
+        const res = await fetch('/api/content', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        if (!res.ok) throw new Error('Save failed');
+
+        content = data;
+        showToast('Content saved successfully', 'success');
+        document.getElementById('saveStatus').textContent = 'Last saved: ' + new Date().toLocaleTimeString();
+      } catch (err) {
+        showToast('Failed to save content', 'error');
+      } finally {
+        btn.textContent = 'Save Changes';
+        btn.disabled = false;
+      }
+    }
+
+    function showToast(message, type) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.className = 'toast show ' + type;
+      setTimeout(() => { toast.className = 'toast'; }, 3000);
+    }
+
+    // Load and render
+    async function init() {
+      try {
+        const res = await fetch('/api/content');
+        content = await res.json();
+        renderForm();
+      } catch (err) {
+        showToast('Failed to load content', 'error');
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>

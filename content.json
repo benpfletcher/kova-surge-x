@@ -1,0 +1,164 @@
+{
+  "site": {
+    "title": "Nike Surge X — Faster Has No Finish Line",
+    "brandName": "NIKE"
+  },
+  "nav": {
+    "links": [
+      { "label": "Innovation", "href": "#features" },
+      { "label": "The Shoe", "href": "#product" },
+      { "label": "Athletes", "href": "#stories" }
+    ],
+    "ctaText": "Buy Now — $249",
+    "ctaHref": "#buy"
+  },
+  "hero": {
+    "eyebrow": "Nike Running / Spring 2025",
+    "headlineLine1": "FASTER HAS",
+    "headlineLine2": "NO FINISH LINE.",
+    "subheading": "The Nike Surge X doesn't care about your comfort zone. Zero-drag Flyknit. Full-length carbon. Built for the runners who'd rather break than settle.",
+    "primaryButtonText": "Shop Now",
+    "primaryButtonHref": "#buy",
+    "ghostButtonText": "Explore the tech",
+    "ghostButtonHref": "#product",
+    "backgroundImage": "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=1800&q=90&fit=crop",
+    "stats": [
+      { "value": "185g", "label": "Shoe Weight" },
+      { "value": "34%", "label": "Energy Return" },
+      { "value": "4K", "label": "Athletes Tested" }
+    ]
+  },
+  "ticker": {
+    "items": [
+      "NIKE SURGE X",
+      "JUST DO IT",
+      "FASTER HAS NO FINISH LINE",
+      "SPRING 2025",
+      "BREAK EVERYTHING",
+      "FREE SHIPPING OVER $150"
+    ]
+  },
+  "features": {
+    "eyebrow": "Nike Innovation",
+    "title": "ENGINEERED TO",
+    "titleHighlight": "DESTROY LIMITS",
+    "cards": [
+      {
+        "number": "01",
+        "title": "FULL-LENGTH CARBON",
+        "description": "A carbon fibre plate that spans heel to toe. No flex loss. No wasted energy. Every ounce of force you put down comes back harder. This isn't cushioning — it's a catapult.",
+        "statValue": "34%",
+        "statLabel": "more energy return"
+      },
+      {
+        "number": "02",
+        "title": "REACT X FOAM",
+        "description": "Nike React X responds to your stride in real time. Firm at impact. Soft at rest. It reads the way you run and adapts before your next footstrike. Your shoes just got smarter than you.",
+        "statValue": "2×",
+        "statLabel": "cushion lifespan"
+      },
+      {
+        "number": "03",
+        "title": "WAFFLE GRIP OUTSOLE",
+        "description": "Derived from Nike's original waffle iron innovation, re-engineered for 2025. Grips tarmac, trail, and track without compromise. Built for the athletes who don't pick lanes.",
+        "statValue": "0.3s",
+        "statLabel": "faster off the line"
+      }
+    ]
+  },
+  "spotlight": {
+    "eyebrow": "The Shoe",
+    "productNameLine1": "NIKE",
+    "productNameLine2": "SURGE X",
+    "tagline": "Born on the track. Built for the streets. Made for the ones who never stop.",
+    "badge": "New Drop",
+    "image": "https://images.unsplash.com/photo-1556906781-9a412961c28c?w=1000&q=90&fit=crop",
+    "specs": [
+      { "label": "Upper", "value": "Flyknit 3.0" },
+      { "label": "Midsole", "value": "React X + Carbon Plate" },
+      { "label": "Outsole", "value": "Waffle Grip Compound" },
+      { "label": "Weight", "value": "185g (US M9)" },
+      { "label": "Drop", "value": "8mm" },
+      { "label": "Colourways", "value": "Volt / Obsidian / Infrared" }
+    ],
+    "price": 249,
+    "ctaText": "Add to Cart"
+  },
+  "manifesto": {
+    "quote": "You don't wait for fast. You <em>hunt</em> it down. You drag it out of the dark and make it yours.",
+    "attribution": "— Nike Running, 2025"
+  },
+  "testimonials": {
+    "eyebrow": "Nike Athletes",
+    "title": "THEY DIDN'T ASK",
+    "titleHighlight": "FOR PERMISSION.",
+    "cards": [
+      {
+        "stars": 5,
+        "text": "Forty seconds off my marathon PB. The carbon plate doesn't negotiate — it just launches. Every single step feels like the gun just went off. I've never worn anything that made me feel this dangerous.",
+        "name": "Marcus T.",
+        "role": "Nike Marathon Team",
+        "avatar": "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&q=80&fit=crop&crop=face"
+      },
+      {
+        "stars": 5,
+        "text": "I used to switch shoes between track and trail. Now I just lace up and go. The Surge X doesn't care about the surface — and neither do I anymore. This shoe turned me into a different kind of runner.",
+        "name": "Priya K.",
+        "role": "Nike Trail Division",
+        "avatar": "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&q=80&fit=crop&crop=face"
+      },
+      {
+        "stars": 5,
+        "text": "I coach sixty athletes. Every single one who's tried the Surge X refuses to go back. The React X foam adapts to completely different gaits within strides. This is the most intelligent shoe Nike has ever made.",
+        "name": "Dean F.",
+        "role": "Nike Run Club Coach, Sydney",
+        "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80&fit=crop&crop=face"
+      }
+    ]
+  },
+  "cta": {
+    "headline": "STOP TRAINING. START HUNTING.",
+    "subtext": "Free shipping Australia-wide. 30-day returns. No questions asked.",
+    "buttonText": "Buy Surge X — $249",
+    "buttonHref": "#"
+  },
+  "footer": {
+    "brandDescription": "Nike, Inc. Just Do It. Performance footwear and apparel for athletes who refuse to be average.",
+    "columns": [
+      {
+        "heading": "Shop",
+        "links": [
+          { "label": "Surge X — $249", "href": "#" },
+          { "label": "Pegasus 42", "href": "#" },
+          { "label": "Vaporfly Next%", "href": "#" },
+          { "label": "All Running", "href": "#" }
+        ]
+      },
+      {
+        "heading": "Nike",
+        "links": [
+          { "label": "About Nike", "href": "#" },
+          { "label": "Nike Athletes", "href": "#" },
+          { "label": "Sustainability", "href": "#" },
+          { "label": "Nike Run Club", "href": "#" }
+        ]
+      },
+      {
+        "heading": "Support",
+        "links": [
+          { "label": "Size Guide", "href": "#" },
+          { "label": "Shipping & Returns", "href": "#" },
+          { "label": "FAQ", "href": "#" },
+          { "label": "Contact", "href": "#" }
+        ]
+      }
+    ],
+    "copyright": "© 2025 Nike, Inc. All rights reserved.",
+    "socials": [
+      { "label": "Instagram", "href": "#" },
+      { "label": "Strava", "href": "#" },
+      { "label": "TikTok", "href": "#" },
+      { "label": "YouTube", "href": "#" }
+    ]
+  }
+}

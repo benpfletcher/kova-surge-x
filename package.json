@@ -1,0 +1,13 @@
+{
+  "name": "kova-surge-x",
+  "version": "1.0.0",
+  "description": "KOVA Surge X — Promotional landing page with CMS",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}
