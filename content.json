@@ -21,7 +21,7 @@
     "primaryButtonHref": "#buy",
     "ghostButtonText": "Explore the tech",
     "ghostButtonHref": "#product",
-    "backgroundImage": "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=1800&q=90&fit=crop",
+    "backgroundImage": "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=1800&q=90&fit=crop",
     "stats": [
       { "value": "185g", "label": "Shoe Weight" },
       { "value": "34%", "label": "Energy Return" },

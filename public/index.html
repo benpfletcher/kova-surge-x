@@ -11,13 +11,14 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --coral: #FF4832;
-      --coral-dim: rgba(255,72,50,0.15);
-      --dark: #0d0d0d;
-      --dark2: #111111;
-      --dark3: #181818;
+      --coral: #FF3D00;
+      --coral-dim: rgba(255,61,0,0.18);
+      --volt: #C6FF00;
+      --dark: #080808;
+      --dark2: #0c0c0c;
+      --dark3: #141414;
       --white: #ffffff;
-      --white-dim: rgba(255,255,255,0.5);
+      --white-dim: rgba(255,255,255,0.55);
       --white-ghost: rgba(255,255,255,0.07);
     }
 
@@ -29,6 +30,29 @@
       font-family: 'Barlow Condensed', sans-serif;
       overflow-x: hidden;
       cursor: none;
+    }
+
+    /* Animated grain texture */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      pointer-events: none;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
+    }
+
+    /* Scroll progress bar */
+    .scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--coral), var(--volt));
+      z-index: 9999;
+      transition: width 0.1s;
     }
 
     /* Custom cursor */
@@ -127,11 +151,11 @@
     .nav-swoosh {
       width: 72px;
       height: auto;
-      fill: var(--white);
-      transition: fill 0.3s;
+      filter: brightness(0) invert(1);
+      transition: filter 0.3s;
     }
     .nav-logo:hover .nav-swoosh {
-      fill: var(--coral);
+      filter: brightness(0) invert(1) drop-shadow(0 0 8px var(--coral));
     }
     .nav-links {
       display: flex;
@@ -202,7 +226,9 @@
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(13,13,13,0.8) 0%, rgba(13,13,13,0.2) 45%, rgba(13,13,13,0.75) 100%);
+      background:
+        linear-gradient(135deg, rgba(8,8,8,0.92) 0%, rgba(8,8,8,0.3) 40%, rgba(255,61,0,0.15) 70%, rgba(8,8,8,0.85) 100%),
+        radial-gradient(ellipse at 70% 60%, rgba(255,61,0,0.1) 0%, transparent 60%);
     }
     .hero-swoosh-bg {
       position: absolute;
@@ -210,16 +236,17 @@
       bottom: 10%;
       width: 55%;
       height: auto;
-      fill: rgba(255,255,255,0.04);
+      filter: brightness(0) invert(1);
+      opacity: 0;
       z-index: 1;
       pointer-events: none;
-      opacity: 0;
       transform: translateX(60px);
       animation: swooshReveal 1.8s 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
+    .hero-swoosh-bg.visible-swoosh { opacity: 0.04; }
     @keyframes swooshReveal {
       from { opacity: 0; transform: translateX(60px); }
-      to { opacity: 1; transform: translateX(0); }
+      to { opacity: 0.04; transform: translateX(0); }
     }
     .hero-content {
       position: relative;
@@ -321,8 +348,11 @@
     .hero-stat { text-align: right; }
     .hero-stat-num {
       font-family: 'Anton', sans-serif;
-      font-size: 42px;
-      color: var(--white);
+      font-size: 48px;
+      background: linear-gradient(180deg, var(--white) 40%, var(--coral));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       letter-spacing: 0;
       line-height: 1;
     }
@@ -342,10 +372,16 @@
 
     /* ─── TICKER ─── */
     .ticker {
-      background: var(--coral);
-      padding: 16px 0;
+      background: linear-gradient(90deg, var(--coral), #FF6D00, var(--coral));
+      background-size: 200% 100%;
+      animation: tickerGradient 8s ease infinite;
+      padding: 18px 0;
       overflow: hidden;
       white-space: nowrap;
+    }
+    @keyframes tickerGradient {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
     }
     .ticker-track {
       display: inline-flex;
@@ -480,7 +516,15 @@
     /* ─── FEATURES ─── */
     .features {
       padding: 120px 60px;
-      background: var(--dark2);
+      background:
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 80px,
+          rgba(255,61,0,0.02) 80px,
+          rgba(255,61,0,0.02) 82px
+        ),
+        var(--dark2);
     }
     .features-header { margin-bottom: 80px; }
     .section-eyebrow {
@@ -798,7 +842,7 @@
     .cta-banner {
       position: relative;
       overflow: hidden;
-      background: var(--coral);
+      background: linear-gradient(135deg, var(--coral) 0%, #FF6D00 50%, #FFab00 100%);
       padding: 100px 60px;
       display: flex;
       align-items: center;
@@ -1168,7 +1212,7 @@
       align-items: flex-start;
     }
     .chart-ticker { display: flex; align-items: center; gap: 12px; }
-    .chart-swoosh { width: 28px; height: auto; fill: var(--white); }
+    .chart-swoosh { width: 28px; height: auto; filter: brightness(0) invert(1); }
     .chart-ticker-icon {
       font-family: 'Anton', sans-serif;
       font-size: 12px;
@@ -1512,6 +1556,9 @@
 </head>
 <body>
 
+  <!-- Scroll progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
   <!-- Custom cursor -->
   <div class="cursor" id="cursor"></div>
   <div class="cursor-ring" id="cursorRing"></div>
@@ -1519,7 +1566,7 @@
   <!-- ─── NAV ─── -->
   <nav id="nav">
     <a href="#" class="nav-logo">
-      <svg class="nav-swoosh" viewBox="-1 -3 104 48" xmlns="http://www.w3.org/2000/svg"><path d="M100 8C65-2 25 0 2 28-2 36 0 42 8 38 24 28 55 8 100 8Z"/></svg>
+      <img class="nav-swoosh" src="/swoosh.svg" alt="Nike" />
     </a>
     <ul class="nav-links">
       <li><a href="#features">Innovation</a></li>
@@ -1534,7 +1581,7 @@
   <section class="hero">
     <div class="hero-img" id="heroImg" data-parallax="0.3"></div>
     <div class="hero-overlay"></div>
-    <svg class="hero-swoosh-bg" viewBox="-1 -3 104 48" xmlns="http://www.w3.org/2000/svg"><path d="M100 8C65-2 25 0 2 28-2 36 0 42 8 38 24 28 55 8 100 8Z"/></svg>
+    <img class="hero-swoosh-bg" src="/swoosh.svg" alt="" />
     <div class="hero-jdi">JUST DO IT.</div>
     <div class="hero-content">
       <div class="hero-eyebrow reveal">
@@ -1610,7 +1657,7 @@
       </div>
     </div>
     <div class="athlete-panel">
-      <img src="https://images.unsplash.com/photo-1461896836934-bd45ba8224c7?w=600&q=85&fit=crop" alt="Marathon runner" loading="lazy" />
+      <img src="https://images.unsplash.com/photo-1486218119243-13883505764c?w=600&q=85&fit=crop" alt="Marathon runner" loading="lazy" />
       <div class="athlete-panel-overlay"></div>
       <div class="athlete-panel-text">
         <div class="athlete-panel-name">Mei L.</div>
@@ -1684,7 +1731,7 @@
       <div class="chart-card reveal" id="chart-NKE">
         <div class="chart-header">
           <div class="chart-ticker">
-            <svg class="chart-swoosh" viewBox="-1 -3 104 48" xmlns="http://www.w3.org/2000/svg"><path d="M100 8C65-2 25 0 2 28-2 36 0 42 8 38 24 28 55 8 100 8Z"/></svg>
+            <img class="chart-swoosh" src="/swoosh.svg" alt="Nike" />
             <span class="chart-symbol">NKE</span>
           </div>
           <div class="chart-price-group">
@@ -1732,7 +1779,7 @@
 
     <!-- Live beach video masked through typography -->
     <div class="surf-video-mask reveal-scale">
-      <iframe id="surfMainCam" src="https://www.youtube.com/embed/DY5RYp4sxYc?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=DY5RYp4sxYc&modestbranding=1&playsinline=1" allow="autoplay; encrypted-media" loading="lazy"></iframe>
+      <iframe id="surfMainCam" src="https://www.youtube.com/embed/VI8Wj5EwoRM?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=VI8Wj5EwoRM&modestbranding=1&playsinline=1" allow="autoplay; encrypted-media" loading="lazy"></iframe>
       <div class="surf-mask-overlay">
         <span class="surf-mask-text">SURF</span>
       </div>
@@ -1744,21 +1791,21 @@
 
     <!-- Beach cam strip -->
     <div class="surf-cams">
-      <div class="surf-cam-thumb surf-cam-active" data-cam-id="DY5RYp4sxYc" data-cam-name="Pipeline, North Shore — Live">
-        <iframe src="https://www.youtube.com/embed/DY5RYp4sxYc?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=DY5RYp4sxYc&modestbranding=1&playsinline=1" allow="autoplay; encrypted-media" loading="lazy"></iframe>
+      <div class="surf-cam-thumb surf-cam-active" data-cam-id="VI8Wj5EwoRM" data-cam-name="Pipeline, North Shore — Live">
+        <iframe src="https://www.youtube.com/embed/VI8Wj5EwoRM?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=VI8Wj5EwoRM&modestbranding=1&playsinline=1" allow="autoplay; encrypted-media" loading="lazy"></iframe>
         <div class="surf-cam-label">Pipeline, HI <span class="live-tag">● LIVE</span></div>
       </div>
-      <div class="surf-cam-thumb" data-cam-id="wnNrd-VjLsQ" data-cam-name="Waimea Bay, Oahu — Live">
-        <iframe src="https://www.youtube.com/embed/wnNrd-VjLsQ?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=wnNrd-VjLsQ&modestbranding=1&playsinline=1" allow="autoplay; encrypted-media" loading="lazy"></iframe>
-        <div class="surf-cam-label">Waimea Bay <span class="live-tag">● LIVE</span></div>
+      <div class="surf-cam-thumb" data-cam-id="hm9iAviOZ20" data-cam-name="Hawaii / Cali / Bali Multi-Cam — Live">
+        <iframe src="https://www.youtube.com/embed/hm9iAviOZ20?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=hm9iAviOZ20&modestbranding=1&playsinline=1" allow="autoplay; encrypted-media" loading="lazy"></iframe>
+        <div class="surf-cam-label">Multi-Surf <span class="live-tag">● LIVE</span></div>
       </div>
-      <div class="surf-cam-thumb" data-cam-id="OWbI6WtlI-k" data-cam-name="Santa Monica Beach — Live">
-        <iframe src="https://www.youtube.com/embed/OWbI6WtlI-k?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=OWbI6WtlI-k&modestbranding=1&playsinline=1" allow="autoplay; encrypted-media" loading="lazy"></iframe>
-        <div class="surf-cam-label">Santa Monica <span class="live-tag">● LIVE</span></div>
+      <div class="surf-cam-thumb" data-cam-id="kkVrj2cr9Ko" data-cam-name="Koh Samui, Thailand — Live">
+        <iframe src="https://www.youtube.com/embed/kkVrj2cr9Ko?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=kkVrj2cr9Ko&modestbranding=1&playsinline=1" allow="autoplay; encrypted-media" loading="lazy"></iframe>
+        <div class="surf-cam-label">Koh Samui <span class="live-tag">● LIVE</span></div>
       </div>
-      <div class="surf-cam-thumb" data-cam-id="LXWVYoBluT4" data-cam-name="Soggy Dollar Bar, BVI — Live">
-        <iframe src="https://www.youtube.com/embed/LXWVYoBluT4?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=LXWVYoBluT4&modestbranding=1&playsinline=1" allow="autoplay; encrypted-media" loading="lazy"></iframe>
-        <div class="surf-cam-label">White Bay, BVI <span class="live-tag">● LIVE</span></div>
+      <div class="surf-cam-thumb" data-cam-id="_ZXMjk5K0_s" data-cam-name="Eagle Beach, Aruba — Live">
+        <iframe src="https://www.youtube.com/embed/_ZXMjk5K0_s?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=_ZXMjk5K0_s&modestbranding=1&playsinline=1" allow="autoplay; encrypted-media" loading="lazy"></iframe>
+        <div class="surf-cam-label">Aruba <span class="live-tag">● LIVE</span></div>
       </div>
     </div>
 
@@ -1816,7 +1863,7 @@
     <div class="footer-top">
       <div class="footer-brand">
         <a href="#" class="nav-logo" style="text-decoration:none;">
-          <svg class="nav-swoosh" viewBox="-1 -3 104 48" xmlns="http://www.w3.org/2000/svg"><path d="M100 8C65-2 25 0 2 28-2 36 0 42 8 38 24 28 55 8 100 8Z"/></svg>
+          <img class="nav-swoosh" src="/swoosh.svg" alt="Nike" />
         </a>
         <p class="footer-jdi" style="font-family:'Anton',sans-serif; font-size:14px; letter-spacing:4px; text-transform:uppercase; color:var(--white-dim); margin-top:12px;">Just Do It.</p>
         <p></p>
@@ -1845,10 +1892,13 @@
       requestAnimationFrame(animRing);
     })();
 
-    // Nav scroll
+    // Nav scroll + progress bar
     const nav = document.getElementById('nav');
+    const scrollProgress = document.getElementById('scrollProgress');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 60);
+      const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+      scrollProgress.style.width = pct + '%';
     });
 
     // Hero image load animation
@@ -1879,9 +1929,9 @@
 
     // Feature card SVG icons
     const featureIcons = [
-      '<svg class="feature-icon" viewBox="0 0 48 48" fill="none"><path d="M8 40L20 20L28 32L34 24L40 40H8Z" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linejoin="round"/><circle cx="34" cy="14" r="4" stroke="rgba(255,255,255,0.7)" stroke-width="2"/></svg>',
-      '<svg class="feature-icon" viewBox="0 0 48 48" fill="none"><rect x="8" y="28" width="32" height="8" rx="4" stroke="rgba(255,255,255,0.7)" stroke-width="2"/><path d="M16 28V16C16 12 20 10 24 10C28 10 32 12 32 16V28" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round"/></svg>',
-      '<svg class="feature-icon" viewBox="0 0 48 48" fill="none"><path d="M12 36L24 12L36 36" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 28H32" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round"/></svg>'
+      '<svg class="feature-icon" viewBox="0 0 48 48" fill="none"><path d="M8 40L20 20L28 32L34 24L40 40H8Z" stroke="#C6FF00" stroke-width="2" stroke-linejoin="round"/><circle cx="34" cy="14" r="4" stroke="#C6FF00" stroke-width="2"/></svg>',
+      '<svg class="feature-icon" viewBox="0 0 48 48" fill="none"><rect x="8" y="28" width="32" height="8" rx="4" stroke="#C6FF00" stroke-width="2"/><path d="M16 28V16C16 12 20 10 24 10C28 10 32 12 32 16V28" stroke="#C6FF00" stroke-width="2" stroke-linecap="round"/></svg>',
+      '<svg class="feature-icon" viewBox="0 0 48 48" fill="none"><path d="M12 36L24 12L36 36" stroke="#C6FF00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 28H32" stroke="#C6FF00" stroke-width="2" stroke-linecap="round"/></svg>'
     ];
     const starSVG = '<svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
     const arrowSVG = '<svg class="arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M14 6l6 6-6 6"/></svg>';
@@ -2156,10 +2206,10 @@
 
     // ─── SURF BEACH CAM SWITCHING ───
     const surfCams = [
-      { id: 'DY5RYp4sxYc', name: 'Pipeline, North Shore — Live' },
-      { id: 'wnNrd-VjLsQ', name: 'Waimea Bay, Oahu — Live' },
-      { id: 'OWbI6WtlI-k', name: 'Santa Monica Beach — Live' },
-      { id: 'LXWVYoBluT4', name: 'Soggy Dollar Bar, BVI — Live' }
+      { id: 'VI8Wj5EwoRM', name: 'Pipeline, North Shore — Live' },
+      { id: 'hm9iAviOZ20', name: 'Hawaii / Cali / Bali Multi-Cam — Live' },
+      { id: 'kkVrj2cr9Ko', name: 'Koh Samui, Thailand — Live' },
+      { id: '_ZXMjk5K0_s', name: 'Eagle Beach, Aruba — Live' }
     ];
     let currentCamIndex = 0;
 
